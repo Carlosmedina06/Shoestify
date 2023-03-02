@@ -2,14 +2,14 @@ import { gql } from 'graphql-tag'
 
 export const typeDefs = gql`
   type Query {
-    hello: String
     products: [product]
     users: [user]
     userById(id: ID): user
   }
 
   type Mutation {
-    createUser(name: String, email: String, password: String): user
+    loginUser(email: String!, password: String!): Auth
+    createUser(name: String, email: String, password: String): Auth
     deleteUser(id: ID): user
     createProduct(
       name: String
@@ -30,6 +30,12 @@ export const typeDefs = gql`
     active: Boolean
     isAdmin: Boolean
     allyourPurchase: [String]
+  }
+
+  type Auth {
+    token: String
+    email: String
+    id: ID
   }
 
   type product {
