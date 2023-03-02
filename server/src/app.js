@@ -5,10 +5,14 @@ import cors from 'cors'
 import { ApolloServer } from '@apollo/server'
 import { expressMiddleware } from '@apollo/server/express4'
 
-export async function createServer(typeDefs, resolvers) {
+export async function createServer(typeDefs, resolvers, context) {
   const app = express()
   const serverHttp = http.createServer(app)
-  const server = new ApolloServer({ typeDefs, resolvers })
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    context,
+  })
 
   await server.start()
 
@@ -16,5 +20,6 @@ export async function createServer(typeDefs, resolvers) {
 
   await new Promise((resolve) => serverHttp.listen({ port: 4000 }, resolve))
   // eslint-disable-next-line no-console
+
   console.log(`🚀 Server ready at http://localhost:4000`)
 }
