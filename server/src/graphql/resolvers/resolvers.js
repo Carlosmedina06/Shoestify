@@ -1,8 +1,7 @@
-import { createUser, getUserById, getUsers, deleteUser } from './user.js'
+import { createUser, getUserById, getUsers, deleteUser, loginUser } from './user.js'
 
 export const resolvers = {
   Query: {
-    hello: () => 'Hello world!',
     users: getUsers,
     userById: getUserById,
   },
@@ -10,5 +9,6 @@ export const resolvers = {
   Mutation: {
     createUser,
     deleteUser,
+    loginUser,
   },
 }
