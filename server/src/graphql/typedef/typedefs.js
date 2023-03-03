@@ -3,6 +3,7 @@ import { gql } from 'graphql-tag'
 export const typeDefs = gql`
   type Query {
     products: [product]
+    productById(id: ID): product
     users: [user]
     userById(id: ID): user
   }
@@ -19,7 +20,20 @@ export const typeDefs = gql`
       category: String
       price: Float
       countInStock: Int
+      active: Boolean
     ): product
+    updateProduct(
+      id: ID
+      name: String
+      description: String
+      image: String
+      brand: String
+      category: String
+      price: Float
+      countInStock: Int
+      active: Boolean
+    ): product
+    deleteProduct(id: ID): product
   }
 
   type user {
@@ -34,7 +48,6 @@ export const typeDefs = gql`
 
   type Auth {
     token: String
-    email: String
     id: ID
   }
 
@@ -47,5 +60,6 @@ export const typeDefs = gql`
     category: String
     price: Float
     countInStock: Int
+    active: Boolean
   }
 `
