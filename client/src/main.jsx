@@ -1,18 +1,22 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
+import { ApolloProvider } from '@apollo/client'
+import { RouterProvider } from 'react-router-dom'
+import { ChakraProvider } from '@chakra-ui/react'
 
-import App from './App'
-
-const client = new ApolloClient({
-  uri: 'http://localhost:4000/graphql',
-  cache: new InMemoryCache(),
-})
+import { client } from './graphql/client'
+import { router } from './routes'
+import theme from './theme/theme'
+import { Layout } from './layout/Layout'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <App />
-    </ApolloProvider>
+    <ChakraProvider theme={theme}>
+      <ApolloProvider client={client}>
+        <RouterProvider router={router}>
+          <Layout />
+        </RouterProvider>
+      </ApolloProvider>
+    </ChakraProvider>
   </React.StrictMode>,
 )
