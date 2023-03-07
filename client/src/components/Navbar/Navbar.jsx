@@ -46,7 +46,12 @@ const Navbar = () => {
             transition={'all 0.2s ease-in-out'}
             onClick={isOpen ? onClose : onOpen}
           />
-          <Text color={light} fontSize={'2xl'} fontWeight={'bold'} userSelect={'none'}>
+          <Text
+            color={light}
+            fontSize={{ base: 'md', md: '2xl' }}
+            fontWeight={'bold'}
+            userSelect={'none'}
+          >
             Shoestify 👟
           </Text>
           <Stack as={'nav'} direction={'row'} display={{ base: 'none', md: 'flex' }} spacing={4}>
