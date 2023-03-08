@@ -55,8 +55,8 @@ const Navbar = () => {
             Shoestify 👟
           </Text>
           <Stack as={'nav'} direction={'row'} display={{ base: 'none', md: 'flex' }} spacing={4}>
-            <ContentLink to={`/`}>Home</ContentLink>
-            <ContentLink to={`/Products`}>Products</ContentLink>
+            <ContentLink to={`/`}>Inicio</ContentLink>
+            <ContentLink to={`/Products`}>Productos</ContentLink>
           </Stack>
           <Stack direction={'row'} spacing={4}>
             <Cart />
