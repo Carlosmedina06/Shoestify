@@ -1,24 +1,39 @@
-import * as React from 'react'
 import { Image, Stack } from '@chakra-ui/react'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css'
 
-const images = [
-  'https://images.unsplash.com/photo-1606567595334-d39972c85dbe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=',
-  'https://images.unsplash.com/photo-1572402230267-f3e267c1e5a2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
-  'https://images.unsplash.com/photo-1497206365907-f5e630693df0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
-  'https://images.unsplash.com/photo-1551085254-e96b210db58a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
-  'https://images.unsplash.com/photo-1552728089-57bdde30beb3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
-  'https://images.unsplash.com/photo-1555169062-013468b47731?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
-  'https://images.unsplash.com/photo-1444464666168-49d633b86797?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
-]
+const Carousel = () => {
+  const images = [
+    'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
+    'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
+    'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=796&q=80',
+    'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80',
+    'https://images.unsplash.com/photo-1615028456268-02eb9815a776?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=975&q=80',
+  ]
 
-const CarouselApp = () => (
-  <Stack alignItems={'center'} my={10} py={10}>
-    <Stack direction={'row'} h={200} justifyContent={'center'} px={4} w={200}>
-      {images.map((image, index) => (
-        <Image key={index} rounded={'md'} src={image} />
-      ))}
+  const shuffledImages = images.sort(() => Math.random() - 0.5)
+
+  return (
+    <Stack alignItems={'center'} my={4} py={20}>
+      <Stack direction={'row'} h={400} justifyContent={'center'} px={4} w={'100%'}>
+        <Swiper slidesPerView={3} spaceBetween={20}>
+          {shuffledImages.map((image, index) => (
+            <SwiperSlide key={index}>
+              <Image
+                alt="image"
+                borderRadius={10}
+                boxShadow={'2xl'}
+                h={'100%'}
+                objectFit={'cover'}
+                src={image}
+                w={'100%'}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </Stack>
     </Stack>
-  </Stack>
-)
+  )
+}
 
-export default CarouselApp
+export default Carousel
