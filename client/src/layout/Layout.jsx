@@ -1,6 +1,7 @@
 import { Container, useColorModeValue } from '@chakra-ui/react'
 import { Outlet } from 'react-router-dom'
 
+import Footer from '../components/Footer/Footer'
 import Navbar from '../components/Navbar/Navbar'
 
 export const Layout = () => {
@@ -10,6 +11,7 @@ export const Layout = () => {
     <Container alignSelf="center" bg={dark} height="100%" maxWidth="container" paddingX={0}>
       <Navbar />
       <Outlet />
+      <Footer />
     </Container>
   )
 }
