@@ -10,6 +10,7 @@ const Banner = () => {
       bg={dark}
       direction={'row'}
       justifyContent={'space-around'}
+      my={4}
       spacing={4}
     >
       <Image
