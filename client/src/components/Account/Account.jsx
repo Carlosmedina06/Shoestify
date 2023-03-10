@@ -42,7 +42,7 @@ const Account = () => {
           }
         />
       </MenuButton>
-      <MenuList bg={dark} px={4}>
+      <MenuList bg={dark} px={4} zIndex={2}>
         <MenuLink to={`/Profile`}>Profile</MenuLink>
         <MenuLink to={`/Settings`}>Settings</MenuLink>
         <MenuDivider />
