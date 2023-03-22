@@ -5,10 +5,13 @@ import ProductSimple from '../../components/CardProduct/CardProduct'
 import Filter from '../../components/Filter/Filter'
 import { GET_PRODUCTS } from '../../graphql/products'
 
-function Products() {
+function ProductsMujer() {
   const light = useColorModeValue('brand.secundario', 'brand.primario')
 
   const { loading, error, data } = useQuery(GET_PRODUCTS)
+  const productsWomen = data?.products.filter((producto) => {
+    return producto.category === 'Mujeres'
+  })
 
   if (loading) return <p>Loading...</p>
   if (error)
@@ -37,9 +40,9 @@ function Products() {
             letterSpacing={2}
             textTransform={'uppercase'}
           >
-            Zapatillas
+            Zapatillas de Mujer
           </Heading>
-          <Text fontSize={'xs'}>[{data?.length}]</Text>
+          <Text fontSize={'xs'}>[{productsWomen?.length}]</Text>
         </Stack>
         <Filter />
       </Stack>
@@ -53,7 +56,7 @@ function Products() {
           xl: '1fr 1fr 1fr 1fr',
         }}
       >
-        {data.map((product) => (
+        {productsWomen?.map((product) => (
           <ProductSimple
             key={product.id}
             brand={product.brand}
@@ -67,4 +70,4 @@ function Products() {
   )
 }
 
-export default Products
+export default ProductsMujer
