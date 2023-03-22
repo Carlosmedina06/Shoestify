@@ -56,7 +56,9 @@ const Navbar = () => {
           </Text>
           <Stack as={'nav'} direction={'row'} display={{ base: 'none', md: 'flex' }} spacing={4}>
             <ContentLink to={`/`}>Inicio</ContentLink>
-            <ContentLink to={`/Products`}>Productos</ContentLink>
+            <ContentLink to={`/Products/Hombres`}>Hombres</ContentLink>
+            <ContentLink to={`/Products/Mujeres`}>Mujeres</ContentLink>
+            <ContentLink to={`/Products/Niños`}>Niños</ContentLink>
           </Stack>
           <Stack direction={'row'} spacing={4}>
             <Cart />
@@ -67,8 +69,10 @@ const Navbar = () => {
       {isOpen ? (
         <Box bg={dark} display={{ md: 'none' }} pb={4}>
           <Stack align={'center'} as={'nav'} fontWeight="bold" spacing={4}>
-            <ContentLink to={`/`}>Home</ContentLink>
-            <ContentLink to={`/Products`}>Products</ContentLink>
+            <ContentLink to={`/`}>Inicio</ContentLink>
+            <ContentLink to={`/Products/Hombres`}>Hombres</ContentLink>
+            <ContentLink to={`/Products/Mujeres`}>Mujeres</ContentLink>
+            <ContentLink to={`/Products/Niños`}>Niños</ContentLink>
           </Stack>
         </Box>
       ) : null}
