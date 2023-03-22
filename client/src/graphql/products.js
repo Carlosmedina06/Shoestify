@@ -33,3 +33,19 @@ export const CREATE_PRODUCT = gql`
     }
   }
 `
+
+export const GET_PRODUCTS = gql`
+  {
+    products {
+      id
+      name
+      description
+      image
+      brand
+      category
+      price
+      countInStock
+      active
+    }
+  }
+`
