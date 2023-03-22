@@ -72,6 +72,7 @@ export const Home = () => {
               boxSize="400px"
               justifySelf={'center'}
               objectFit="cover"
+              rounded={'xl'}
               src="https://images.unsplash.com/photo-1518002171953-a080ee817e1f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
             />
           </Stack>
