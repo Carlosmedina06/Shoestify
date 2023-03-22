@@ -1,8 +1,7 @@
-import { Center, SimpleGrid, Stack, useColorModeValue } from '@chakra-ui/react'
-import React from 'react'
+import { Heading, SimpleGrid, Stack, Text, useColorModeValue } from '@chakra-ui/react'
 
 import ProductSimple from '../../components/CardProduct/CardProduct'
-import Filter from '../../components/Filterr/Filter'
+import Filter from '../../components/Filter/Filter'
 
 const images = [
   'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
@@ -23,9 +22,31 @@ function Products() {
   const light = useColorModeValue('brand.secundario', 'brand.primario')
 
   return (
-    <Stack alignItems={'center'} w={'100wh'}>
-      <SimpleGrid
+    <Stack>
+      <Stack
+        alignItems="center"
+        color={light}
+        direction={'row'}
+        justifyContent={'space-between'}
         px={10}
+        spacing={2}
+      >
+        <Stack alignItems="baseline" direction={{ base: 'column', md: 'row' }}>
+          <Heading
+            as="i"
+            fontSize={{ base: '2xl', md: '4xl' }}
+            fontWeight={'normal'}
+            letterSpacing={2}
+            textTransform={'uppercase'}
+          >
+            Zapatillas de hombres
+          </Heading>
+          <Text fontSize={'xs'}>[{images.length}]</Text>
+        </Stack>
+        <Filter />
+      </Stack>
+      <SimpleGrid
+        px={2}
         spacing={8}
         templateColumns={{
           sm: '1fr',
