@@ -11,7 +11,7 @@ import {
 import { Icon } from '@chakra-ui/icons'
 import { IoCartOutline } from 'react-icons/io5'
 
-export default function ProductSimple({ IMAGE }) {
+export default function ProductSimple({ image, name, brand, price }) {
   const light = useColorModeValue('brand.secundario', 'brand.primario')
   const dark = useColorModeValue('brand.primario', 'brand.secundario')
 
@@ -38,7 +38,7 @@ export default function ProductSimple({ IMAGE }) {
             pos: 'absolute',
             top: 5,
             left: 0,
-            backgroundImage: `url(${IMAGE})`,
+            backgroundImage: `url(${image})`,
             filter: 'blur(15px)',
             zIndex: -1,
           }}
@@ -52,14 +52,14 @@ export default function ProductSimple({ IMAGE }) {
           pos={'relative'}
           rounded={'lg'}
         >
-          <Image height={230} objectFit={'cover'} rounded={'md'} src={IMAGE} width={282} />
+          <Image height={230} objectFit={'cover'} rounded={'md'} src={image} width={282} />
         </Box>
         <Stack align={'center'} color={dark} pt={10}>
           <Text fontSize={'sm'} letterSpacing={2} textTransform={'uppercase'}>
-            Brand
+            {brand}
           </Text>
           <Heading fontSize={'2xl'} fontWeight={500}>
-            Nice Chair, pink
+            {name}
           </Heading>
           <Stack
             alignItems={'center'}
@@ -68,7 +68,7 @@ export default function ProductSimple({ IMAGE }) {
             w={'100%'}
           >
             <Text fontSize={'md'} fontWeight={800}>
-              Precio: $57.000
+              Precio: ${price}
             </Text>
             <Button
               _active={{
