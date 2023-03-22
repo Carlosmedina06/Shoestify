@@ -23,25 +23,6 @@ const theme = extendTheme({
         },
       }),
     },
-    textStyles: {
-      translucid: {
-        '.chakra-ui-light &': {
-          color: ['blackAlpha.100', 'blackAlpha.500'],
-        },
-        '.chakra-ui-dark &': {
-          color: ['whiteAlpha.100', 'whiteAlpha.500'],
-        },
-      },
-    },
-    fontSizes: {
-      sm: '0.95rem',
-      xs: '0.9rem',
-    },
-    sizes: {
-      container: {
-        xl: '1265px',
-      },
-    },
   },
 })
 
