@@ -1,12 +1,9 @@
-const cloud_name = 'ddzjbp2i1'
-const preset = 'nveytxo5'
-
 export const fileUpload = async (file) => {
-  const cloudinaryUrl = `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`
+  const cloudinaryUrl = `process.env.REACT_APP_CLOUDINARY_URL`
 
   const formData = new FormData()
 
-  formData.append('upload_preset', preset)
+  formData.append('upload_preset', `${process.env.REACT_APP_CLOUDINARY_PRESET}`)
   formData.append('file', file)
 
   try {
