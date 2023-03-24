@@ -31,7 +31,7 @@ function CreateProduct() {
   const [createProduct, { loading }] = useMutation(CREATE_PRODUCT, {
     context: {
       headers: {
-        authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MDIwYjI5NGVjNzExMjhlZDNhNDRjZiIsIm5hbWUiOiJjYXJsb3MiLCJlbWFpbCI6InNsYWF3bWVkaW5hMTRAZ21haWwuY29tIiwiaXNBZG1pbiI6dHJ1ZSwiYWN0aXZlIjp0cnVlLCJhbGx5b3VyUHVyY2hhc2UiOltdLCJpYXQiOjE2Nzk1MDExMzYsImV4cCI6MTY3OTU4NzUzNn0._bcT_o8M20Z6YRn-vBlUU_ZldqL-Yk_AdE9_Z1Qt0EM`,
+        authorization: `${import.meta.env.VITE_REACT_APP_USERTOKEN}`,
       },
     },
   })

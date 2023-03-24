@@ -1,5 +1,5 @@
 export const fileUpload = async (file) => {
-  const cloudinaryUrl = `${import.meta.env.VITE_REACT_APP_CLOUDINARY_URL}`
+  const cloudinaryUrl = `${import.meta.env.VITE_REACT_APP_CLOUDINARY_UPLOAD_URL}`
 
   const formData = new FormData()
 
