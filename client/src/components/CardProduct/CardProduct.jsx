@@ -18,8 +18,9 @@ export default function ProductSimple({ image, name, brand, price }) {
   return (
     <Center py={12}>
       <Box
-        bg={light}
+        bg={'whiteAlpha.800'}
         boxShadow={'2xl'}
+        h={'full'}
         maxW={'300px'}
         minW={'300px'}
         p={6}
@@ -58,7 +59,7 @@ export default function ProductSimple({ image, name, brand, price }) {
           <Text fontSize={'sm'} letterSpacing={2} textTransform={'uppercase'}>
             {brand}
           </Text>
-          <Heading fontSize={'2xl'} fontWeight={500}>
+          <Heading fontSize={'2xl'} fontWeight={500} textTransform={'capitalize'}>
             {name}
           </Heading>
           <Stack
