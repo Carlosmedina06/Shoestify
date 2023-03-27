@@ -1,10 +1,10 @@
-import React from 'react'
 import { Center, Image, Stack, Text, useColorModeValue } from '@chakra-ui/react'
 import { NavLink } from 'react-router-dom'
 
 import Banner from '../../components/Banner/Banner'
 import Carousel from '../../components/Carousel/Carousel'
-export const Home = () => {
+
+const Home = () => {
   const dark = useColorModeValue('brand.primario', 'brand.secundario')
   const light = useColorModeValue('brand.secundario', 'brand.primario')
 
@@ -102,3 +102,5 @@ export const Home = () => {
     </>
   )
 }
+
+export default Home

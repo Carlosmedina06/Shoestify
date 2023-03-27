@@ -4,11 +4,13 @@ import { NavLink } from 'react-router-dom'
 
 import Cart from '../Cart/Cart'
 import Account from '../Account/Account'
+import useAuth from '../../utils/hooks/useAuth'
 
 const Navbar = () => {
   const dark = useColorModeValue('brand.primario', 'brand.secundario')
   const light = useColorModeValue('brand.secundario', 'brand.primario')
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isAuthenticated, user } = useAuth()
 
   const ContentLink = ({ children, to }) => (
     <NavLink to={to}>
@@ -62,7 +64,11 @@ const Navbar = () => {
           </Stack>
           <Stack direction={'row'} spacing={4}>
             <Cart />
-            <Account />
+            {isAuthenticated ? (
+              <Account />
+            ) : (
+              <ContentLink to={`/Login`}>Iniciar Sesión</ContentLink>
+            )}
           </Stack>
         </Stack>
       </Stack>
