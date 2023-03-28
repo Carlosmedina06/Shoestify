@@ -3,6 +3,7 @@ import { Button, Container, FormControl, FormLabel, Heading, Input, Stack } from
 import { useMutation } from '@apollo/client'
 import { useNavigate } from 'react-router-dom'
 
+import useAuthStore from '../../store/authStore'
 import { LOGIN_USER } from '../../graphql/user'
 
 const Login = () => {
@@ -12,6 +13,7 @@ const Login = () => {
   })
   const [loginUser, { loading }] = useMutation(LOGIN_USER)
   const navigate = useNavigate()
+  const { loginToken } = useAuthStore()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -23,7 +25,7 @@ const Login = () => {
       },
     })
 
-    localStorage.setItem('token', token.data.loginUser.token)
+    loginToken(token.data.loginUser.token)
     setUser({
       email: '',
       password: '',
