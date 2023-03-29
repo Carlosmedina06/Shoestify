@@ -1,4 +1,4 @@
-import { Container, list, useColorModeValue } from '@chakra-ui/react'
+import { Container, useColorModeValue } from '@chakra-ui/react'
 import { Outlet } from 'react-router-dom'
 
 import Footer from '../components/Footer/Footer'
@@ -8,7 +8,7 @@ export const Layout = () => {
   const dark = useColorModeValue('brand.primario', 'brand.secundario')
 
   return (
-    <Container alignSelf="center" bg={'black'} height="100%" maxWidth="container" paddingX={0}>
+    <Container alignSelf="center" bg={dark} height="100%" maxWidth="container" paddingX={0}>
       <Navbar />
       <Outlet />
       <Footer />

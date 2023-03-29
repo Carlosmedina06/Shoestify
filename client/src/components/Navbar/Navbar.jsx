@@ -1,7 +1,7 @@
+import { useEffect } from 'react'
 import { Box, IconButton, Stack, Text, useColorModeValue, useDisclosure } from '@chakra-ui/react'
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 import { NavLink } from 'react-router-dom'
-import { useEffect } from 'react'
 
 import Cart from '../Cart/Cart'
 import Account from '../Account/Account'
@@ -13,6 +13,7 @@ const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const { checkAuth } = useAuthStore()
+  const { isAuthenticated } = useAuthStore((state) => state)
 
   const ContentLink = ({ children, to }) => (
     <NavLink to={to}>
@@ -23,6 +24,7 @@ const Navbar = () => {
         }}
         bg={dark}
         color={light}
+        fontSize={{ base: 'md', md: '2xl' }}
         px={4}
         rounded={'md'}
         transition={'all 0.2s ease-in-out'}
@@ -68,9 +70,9 @@ const Navbar = () => {
             <ContentLink to={`/Products/Mujeres`}>Mujeres</ContentLink>
             <ContentLink to={`/Products/Niños`}>Niños</ContentLink>
           </Stack>
-          <Stack direction={'row'} spacing={4}>
+          <Stack alignItems={'center'} direction={'row'} spacing={4}>
             <Cart />
-            <Account />
+            {isAuthenticated ? <Account /> : <ContentLink to={`/Login`}>Inicia Sesion</ContentLink>}
           </Stack>
         </Stack>
       </Stack>

@@ -1,34 +1,25 @@
 import { Heading, SimpleGrid, Stack, Text, useColorModeValue } from '@chakra-ui/react'
-import { useQuery } from '@apollo/client'
-import { useParams } from 'react-router-dom'
 
 import ProductSimple from '../../components/CardProduct/CardProduct'
 import Filter from '../../components/Filter/Filter'
-import { GET_PRODUCTS } from '../../graphql/products'
+import { useProducts } from '../../utils/hooks/useProducts'
 
 function Products() {
   const light = useColorModeValue('brand.secundario', 'brand.primario')
-  const { category } = useParams()
+  // const { category } = useParams()
 
-  const { loading, error, data } = useQuery(GET_PRODUCTS)
-  const { products } = data || {}
+  // const { loading, error, data } = useQuery(GET_PRODUCTS)
+  // const { products } = data || {}
 
-  const filterProducts = products?.filter((product) => {
-    if (category) {
-      return product.category === category
-    }
+  // const filterProducts = products?.filter((product) => {
+  //   if (category) {
+  //     return product.category === category
+  //   }
 
-    return product
-  })
+  //   return product
+  // })
 
-  if (loading) return <p>Loading...</p>
-  if (error)
-    return (
-      <p>
-        Error :(
-        {error.message})
-      </p>
-    )
+  const { filterProducts } = useProducts()
 
   return (
     <Stack>
@@ -64,7 +55,7 @@ function Products() {
           xl: '1fr 1fr 1fr 1fr',
         }}
       >
-        {filterProducts.map((product) => (
+        {filterProducts?.map((product) => (
           <ProductSimple
             key={product.id}
             brand={product.brand}

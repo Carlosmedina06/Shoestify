@@ -19,15 +19,13 @@ import {
 import { FiFilter } from 'react-icons/fi'
 import { Icon } from '@chakra-ui/react'
 
+import { useProducts } from '../../utils/hooks/useProducts'
+
 function Filter() {
-  const [filter, setFilter] = useState({})
   const { isOpen, onOpen, onClose } = useDisclosure()
   const light = useColorModeValue('brand.secundario', 'brand.primario')
   const dark = useColorModeValue('brand.primario', 'brand.secundario')
-
-  const handleFilter = (e) => {
-    setFilter({ [e.target.name]: e.target.value })
-  }
+  const { handleFilter } = useProducts()
 
   return (
     <>

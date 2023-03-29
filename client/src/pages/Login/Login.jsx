@@ -41,7 +41,7 @@ const Login = () => {
   }
 
   return (
-    <Container h={'100vh'} p={10}>
+    <Container h={'90vh'} p={10}>
       <Stack>
         <Heading>Login</Heading>
         <form onSubmit={handleSubmit}>

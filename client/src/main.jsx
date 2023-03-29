@@ -10,13 +10,11 @@ import theme from './theme/theme'
 import { Layout } from './layout/Layout'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <ChakraProvider theme={theme}>
-      <ApolloProvider client={client}>
-        <RouterProvider router={router}>
-          <Layout />
-        </RouterProvider>
-      </ApolloProvider>
-    </ChakraProvider>
-  </React.StrictMode>,
+  <ChakraProvider theme={theme}>
+    <ApolloProvider client={client}>
+      <RouterProvider router={router}>
+        <Layout />
+      </RouterProvider>
+    </ApolloProvider>
+  </ChakraProvider>,
 )
