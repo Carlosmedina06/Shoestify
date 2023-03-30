@@ -15,7 +15,7 @@ const Footer = () => {
   return (
     <>
       <Divider borderColor={light} borderWidth={'initial'} mb={4} w={'100wh'} />
-      <Container as={Stack} maxW={'6xl'} py={10}>
+      <Container as={Stack} maxW={'6xl'} pb={10}>
         <SimpleGrid
           color={'brand.terciario'}
           spacing={8}
