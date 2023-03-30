@@ -16,10 +16,15 @@ import {
 import { Icon } from '@chakra-ui/icons'
 import { IoCartOutline } from 'react-icons/io5'
 
+import useProductStore from '../../store/productStore'
+
 function Cart() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const dark = useColorModeValue('brand.primario', 'brand.secundario')
   const light = useColorModeValue('brand.secundario', 'brand.primario')
+
+  const cart = useProductStore((state) => state.cart)
+  const totalPrice = cart.reduce((acc, product) => acc + product.price * product.quantity, 0)
 
   return (
     <>
@@ -43,13 +48,17 @@ function Cart() {
           <DrawerBody h={'100%'}>
             <Stack h={'100%'} justifyContent={'space-between'} spacing={4}>
               <Stack>
-                <Text>ACA IRAN LOS Productos QUE SE AGREGUEN AL CARRITO</Text>
-                <Text>ACA IRAN LOS Productos QUE SE AGREGUEN AL CARRITO</Text>
+                {cart.map((product) => (
+                  <Stack key={product.id} direction={'row'} spacing={4}>
+                    <Text>{product.name}</Text>
+                    <Text>${product.price}</Text>
+                    <Text>cantidad: {product.quantity}</Text>
+                  </Stack>
+                ))}
               </Stack>
               <Stack>
-                <Text>Total: $100</Text>
+                <Text>Total: ${totalPrice}</Text>
                 <Divider />
-                <Text>ACA IRAN LOS Productos QUE SE AGREGUEN AL CARRITO</Text>
               </Stack>
             </Stack>
           </DrawerBody>
