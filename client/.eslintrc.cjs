@@ -24,7 +24,7 @@ module.exports = {
     'react/display-name': 'off',
     'react/jsx-uses-react': 'error',
     'react/jsx-uses-vars': 'error',
-    'no-console': 'warn',
+    'no-console': 'off',
     'no-unused-vars': [
       'error',
       {
