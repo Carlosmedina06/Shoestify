@@ -40,7 +40,7 @@ const Navbar = () => {
 
   return (
     <>
-      <Stack bg={dark} fontSize="xl" fontWeight="bold" px={2} py={4} spacing={7} width="100%">
+      <Stack bg={dark} fontSize="xl" fontWeight="bold" pt={4} px={2} spacing={7} width="100%">
         <Stack alignItems={'center'} direction={'row'} justifyContent={'space-between'} px={4}>
           <IconButton
             _hover={{
