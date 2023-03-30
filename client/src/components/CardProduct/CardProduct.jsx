@@ -11,9 +11,17 @@ import {
 import { Icon } from '@chakra-ui/icons'
 import { IoCartOutline } from 'react-icons/io5'
 
-export default function ProductSimple({ image, name, brand, price }) {
+import useProductStore from '../../store/productStore'
+
+export default function ProductSimple({ image, name, brand, price, id, stock }) {
   const light = useColorModeValue('brand.secundario', 'brand.primario')
   const dark = useColorModeValue('brand.primario', 'brand.secundario')
+
+  const { addCart } = useProductStore()
+
+  const handleAddCart = () => {
+    addCart({ id, image, name, brand, price, stock })
+  }
 
   return (
     <Center py={12}>
@@ -59,7 +67,7 @@ export default function ProductSimple({ image, name, brand, price }) {
           <Text fontSize={'sm'} letterSpacing={2} textTransform={'uppercase'}>
             {brand}
           </Text>
-          <Heading fontSize={'2xl'} fontWeight={500} textTransform={'capitalize'}>
+          <Heading fontSize={'md'} fontWeight={500} px={2} py={2} textTransform={'capitalize'}>
             {name}
           </Heading>
           <Stack
@@ -85,6 +93,7 @@ export default function ProductSimple({ image, name, brand, price }) {
               border="1px"
               borderColor={dark}
               color={light}
+              onClick={handleAddCart}
             >
               <Icon as={IoCartOutline} boxSize={5} />
             </Button>
