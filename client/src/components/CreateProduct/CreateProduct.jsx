@@ -31,9 +31,10 @@ function CreateProduct() {
   const [createProduct, { loading }] = useMutation(CREATE_PRODUCT, {
     context: {
       headers: {
-        authorization: `${import.meta.env.VITE_REACT_APP_USERTOKEN}`,
+        authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     },
+    refetchQueries: ['getProducts'],
   })
   const handleSubmit = (e) => {
     e.preventDefault()
