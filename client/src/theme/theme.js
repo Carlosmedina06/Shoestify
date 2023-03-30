@@ -12,17 +12,18 @@ const theme = extendTheme({
       secundario: '#ffffff',
       terciario: '#484848',
     },
-    styles: {
-      global: (props) => ({
-        'html, body, #root': {
-          color: mode(undefined, 'whiteAlpha.900')(props),
-          height: '100%',
-        },
-        '*::-webkit-scrollbar': {
-          display: 'none',
-        },
-      }),
-    },
+  },
+  styles: {
+    global: (props) => ({
+      body: {
+        bg: mode('brand.primario', 'brand.secundario')(props),
+        color: mode('brand.secundario', 'brand.primario')(props),
+        height: '100vh',
+      },
+      '#root': {
+        height: '100%',
+      },
+    }),
   },
 })
 
