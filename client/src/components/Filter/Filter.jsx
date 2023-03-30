@@ -1,11 +1,9 @@
-import { useState } from 'react'
 import {
   Button,
   Drawer,
   DrawerBody,
   DrawerCloseButton,
   DrawerContent,
-  DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
   FormControl,
@@ -19,13 +17,21 @@ import {
 import { FiFilter } from 'react-icons/fi'
 import { Icon } from '@chakra-ui/react'
 
-import { useProducts } from '../../utils/hooks/useProducts'
+import useProductStore from '../../store/productStore'
 
-function Filter() {
+function Filter({ category }) {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const light = useColorModeValue('brand.secundario', 'brand.primario')
   const dark = useColorModeValue('brand.primario', 'brand.secundario')
-  const { handleFilter } = useProducts()
+
+  const { filterByBrand, sortByPrice } = useProductStore()
+
+  const changeFilter = ({ target: { value } }) => {
+    filterByBrand(value, category)
+  }
+  const changeOrder = ({ target: { value } }) => {
+    sortByPrice(value)
+  }
 
   return (
     <>
@@ -64,9 +70,9 @@ function Filter() {
                     cursor={'pointer'}
                     name="marca"
                     outline="none"
-                    placeholder="Selecciona una marca"
-                    onChange={handleFilter}
+                    onChange={changeFilter}
                   >
+                    <option value="all">Todas las marcas</option>
                     <option value="Nike">Nike</option>
                     <option value="Adidas">Adidas</option>
                     <option value="Puma">Puma</option>
@@ -87,31 +93,18 @@ function Filter() {
                       outline: 'none',
                     }}
                     cursor={'pointer'}
+                    name="price"
                     outline="none"
-                    placeholder="Ordena por precio"
+                    placeholder="Ordenar por precio"
+                    onChange={changeOrder}
                   >
-                    <option value="Mayor a menor">Mayor a menor</option>
-                    <option value="Menor a mayor">Menor a mayor</option>
+                    <option value="asc">Mayor a menor</option>
+                    <option value="desc">Menor a mayor</option>
                   </Select>
                 </FormControl>
               </Stack>
             </Stack>
           </DrawerBody>
-
-          <DrawerFooter>
-            <Button
-              _active={{ transform: 'scale(0.95)' }}
-              _hover={{ bg: dark, color: light, borderColor: light }}
-              bg={light}
-              border="1px solid"
-              borderColor={dark}
-              color={dark}
-              transition={'0.3s ease'}
-              w={'100%'}
-            >
-              Aplicar
-            </Button>
-          </DrawerFooter>
         </DrawerContent>
       </Drawer>
     </>
