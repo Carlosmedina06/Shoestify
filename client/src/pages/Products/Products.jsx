@@ -1,25 +1,31 @@
 import { Heading, SimpleGrid, Stack, Text, useColorModeValue } from '@chakra-ui/react'
+import { useParams } from 'react-router-dom'
+import { useEffect } from 'react'
 
 import ProductSimple from '../../components/CardProduct/CardProduct'
 import Filter from '../../components/Filter/Filter'
-import { useProducts } from '../../utils/hooks/useProducts'
+import useProducts from '../../utils/hooks/useProducts'
+import useProductStore from '../../store/productStore'
 
 function Products() {
   const light = useColorModeValue('brand.secundario', 'brand.primario')
-  // const { category } = useParams()
 
-  // const { loading, error, data } = useQuery(GET_PRODUCTS)
-  // const { products } = data || {}
+  const { data } = useProducts()
+  const { setProducts, filterByCategory, setAllProducts } = useProductStore()
+  const { category } = useParams()
 
-  // const filterProducts = products?.filter((product) => {
-  //   if (category) {
-  //     return product.category === category
-  //   }
+  const productos = useProductStore((state) => state.products)
 
-  //   return product
-  // })
+  useEffect(() => {
+    if (data) {
+      setProducts(data.products)
+      setAllProducts(data.products)
+    }
 
-  const { filterProducts } = useProducts()
+    if (category) {
+      filterByCategory(category)
+    }
+  }, [data, setProducts, category, filterByCategory, setAllProducts])
 
   return (
     <Stack>
@@ -41,9 +47,9 @@ function Products() {
           >
             Zapatillas
           </Heading>
-          <Text fontSize={'xs'}>[{filterProducts?.length}]</Text>
+          <Text fontSize={'xs'}>[{productos.length}]</Text>
         </Stack>
-        <Filter />
+        <Filter category={category} productos={productos} />
       </Stack>
       <SimpleGrid
         px={2}
@@ -55,13 +61,15 @@ function Products() {
           xl: '1fr 1fr 1fr 1fr',
         }}
       >
-        {filterProducts?.map((product) => (
+        {productos.map((product) => (
           <ProductSimple
             key={product.id}
             brand={product.brand}
+            id={product.id}
             image={product.image}
             name={product.name}
             price={product.price}
+            stock={product.countInStock}
           />
         ))}
       </SimpleGrid>
