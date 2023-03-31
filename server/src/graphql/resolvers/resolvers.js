@@ -6,6 +6,7 @@ import {
   getProducts,
   updateProduct,
 } from './product.js'
+import { createPaymentIntent } from './pago.js'
 
 export const resolvers = {
   Query: {
@@ -22,5 +23,6 @@ export const resolvers = {
     createProduct,
     updateProduct,
     deleteProduct,
+    createPaymentIntent,
   },
 }
