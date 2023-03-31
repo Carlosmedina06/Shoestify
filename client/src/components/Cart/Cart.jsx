@@ -17,6 +17,7 @@ import {
 import { Icon } from '@chakra-ui/icons'
 import { IoCartOutline } from 'react-icons/io5'
 
+import ModalCart from '../ModalCart/ModalCart'
 import useProductStore from '../../store/productStore'
 import CartCard from '../CartCard/CartCard'
 
@@ -72,17 +73,7 @@ function Cart() {
           </DrawerBody>
           <DrawerFooter display={'flex'} gap={4} justifyContent={'space-between'} w={'100%'}>
             <Text fontWeight={'bold'}>Total: ${totalPrice}</Text>
-
-            <Button
-              _active={{
-                transform: 'scale(0.95)',
-              }}
-              bg={light}
-              color={dark}
-              width={'60%'}
-            >
-              Comprar
-            </Button>
+            <ModalCart />
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
