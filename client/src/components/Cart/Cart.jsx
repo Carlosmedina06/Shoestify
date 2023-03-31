@@ -81,7 +81,7 @@ function Cart() {
               color={dark}
               width={'60%'}
             >
-              Buy
+              Comprar
             </Button>
           </DrawerFooter>
         </DrawerContent>
