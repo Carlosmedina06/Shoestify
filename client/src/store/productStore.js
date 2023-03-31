@@ -69,6 +69,18 @@ const useProductStore = create(
 
         set({ cart: updatedCart })
       },
+      removeCart: (productId) => {
+        const cart = get().cart
+        const updatedCart = cart.map((item) =>
+          item.id === productId
+            ? item.quantity > 1
+              ? { ...item, quantity: item.quantity - 1 }
+              : null
+            : item,
+        )
+
+        set({ cart: updatedCart.filter((item) => item !== null) })
+      },
     }),
     {
       name: 'product-store',
