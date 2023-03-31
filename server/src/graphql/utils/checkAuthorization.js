@@ -17,3 +17,16 @@ export function checkAuthorization(context) {
     }
   }
 }
+
+export function checkUser(context) {
+  if (!context.token) throw new Error('You are not authorized to do this action')
+
+  const authorization = context.token
+
+  if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
+    const token = authorization.substring(7)
+    const decodedToken = jwt.verify(token, process.env.SECRET)
+
+    return decodedToken
+  }
+}
