@@ -34,6 +34,18 @@ export const typeDefs = gql`
       active: Boolean
     ): product
     deleteProduct(id: ID): product
+    createPaymentIntent(products: [productPagoInput]): paymentIntent
+  }
+
+  input productPagoInput {
+    id: ID
+    name: String
+    description: String
+    image: String
+    quantity: Int
+    price: Float
+    stock: Int
+    brand: String
   }
 
   type user {
@@ -44,6 +56,10 @@ export const typeDefs = gql`
     active: Boolean
     isAdmin: Boolean
     allyourPurchase: [String]
+  }
+
+  type paymentIntent {
+    url: String
   }
 
   type Auth {
