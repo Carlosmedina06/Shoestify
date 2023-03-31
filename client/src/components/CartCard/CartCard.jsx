@@ -1,5 +1,4 @@
 import {
-  Button,
   CloseButton,
   Divider,
   Heading,
@@ -8,6 +7,7 @@ import {
   Text,
   useColorModeValue,
   Icon,
+  Box,
 } from '@chakra-ui/react'
 import { MdOutlineAttachMoney } from 'react-icons/md'
 
@@ -42,7 +42,7 @@ const CartCard = ({ product, handleRemove }) => {
             </Stack>
           </Stack>
         </Stack>
-        <Button
+        <Box
           _active={{
             transform: 'scale(0.95)',
           }}
@@ -51,14 +51,14 @@ const CartCard = ({ product, handleRemove }) => {
             color: dark,
           }}
           bg={'transparent'}
+          borderRadius={'md'}
           color={light}
           h={6}
           position={'absolute'}
           right={0}
           top={0}
           transition={'all 0.2s ease-in-out'}
-          w={4}
-          onClick={() => handleRemove(product.id)}
+          w={6}
         >
           <CloseButton
             _hover={{
@@ -66,8 +66,9 @@ const CartCard = ({ product, handleRemove }) => {
             }}
             size={'sm'}
             transition={'all 0.2s ease-in-out'}
+            onClick={() => handleRemove(product.id)}
           />
-        </Button>
+        </Box>
       </Stack>
       <Divider />
     </>
