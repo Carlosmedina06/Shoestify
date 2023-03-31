@@ -81,6 +81,7 @@ const useProductStore = create(
 
         set({ cart: updatedCart.filter((item) => item !== null) })
       },
+      deleteAllCart: () => set({ cart: [] }),
     }),
     {
       name: 'product-store',
