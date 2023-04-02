@@ -1,4 +1,11 @@
-import { createUser, getUserById, getUsers, deleteUser, loginUser } from './user.js'
+import {
+  createUser,
+  getUserById,
+  getUsers,
+  deleteUser,
+  loginUser,
+  productBuyToUser,
+} from './user.js'
 import {
   createProduct,
   deleteProduct,
@@ -24,5 +31,6 @@ export const resolvers = {
     updateProduct,
     deleteProduct,
     createPaymentIntent,
+    productBuyToUser,
   },
 }
