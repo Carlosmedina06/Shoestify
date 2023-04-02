@@ -58,7 +58,6 @@ const Account = () => {
       </MenuButton>
       <MenuList bg={dark} px={4} zIndex={2}>
         <MenuLink to={`/Profile`}>Perfil</MenuLink>
-        <MenuLink to={`/Settings`}>Configuraciones</MenuLink>
         <MenuDivider />
         <Button
           _hover={{
