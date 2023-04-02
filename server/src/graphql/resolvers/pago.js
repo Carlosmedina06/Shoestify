@@ -23,7 +23,7 @@ export const createPaymentIntent = async (_parent, { products }, context) => {
           auto_return: 'all',
 
           back_urls: {
-            success: 'http://www.success.com',
+            success: 'http://localhost:5173/',
             fallure: 'http://www.fallure.com',
             pending: 'http://www.pending.com',
           },
