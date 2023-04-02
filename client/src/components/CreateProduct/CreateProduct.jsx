@@ -10,12 +10,12 @@ import {
   Stack,
   Textarea,
 } from '@chakra-ui/react'
-import { useMutation } from '@apollo/client'
 
 import { fileUpload } from '../../utils/fileUpload'
-import { CREATE_PRODUCT } from '../../graphql/products'
+import { useCreateProduct } from '../../utils/hooks/useCreateProduct'
 
 function CreateProduct() {
+  const [createProduct, { loading }] = useCreateProduct()
   const [errores, setErrores] = useState({})
   const [product, setProduct] = useState({
     name: '',
@@ -28,47 +28,45 @@ function CreateProduct() {
     active: true,
   })
 
-  const [createProduct, { loading }] = useMutation(CREATE_PRODUCT, {
-    context: {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem('token')}`,
-      },
-    },
-    refetchQueries: ['getProducts'],
-  })
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    createProduct({
-      variables: {
-        name: product.name,
-        description: product.description,
-        price: product.price,
-        image: product.image,
-        brand: product.brand,
-        category: product.category,
-        countInStock: product.countInStock,
-        active: product.active,
-      },
-    })
-    setProduct({
-      name: '',
-      description: '',
-      price: 0,
-      image: '',
-      brand: '',
-      category: '',
-      countInStock: 0,
-      active: true,
-    })
-    e.target.reset()
+
+    try {
+      const res = await fileUpload(product.image)
+
+      await createProduct({
+        variables: {
+          name: product.name,
+          description: product.description,
+          price: product.price,
+          image: res,
+          brand: product.brand,
+          category: product.category,
+          countInStock: product.countInStock,
+          active: product.active,
+        },
+      })
+
+      setProduct({
+        name: '',
+        description: '',
+        price: 0,
+        image: '',
+        brand: '',
+        category: '',
+        countInStock: 0,
+        active: true,
+      })
+      e.target.reset()
+    } catch (error) {
+      throw new Error(error)
+    }
   }
 
-  const handleUploadImg = async ({ target }) => {
+  const handleUploadImg = ({ target }) => {
     const file = target.files[0]
 
-    fileUpload(file).then((res) => {
-      setProduct({ ...product, image: res })
-    })
+    setProduct({ ...product, image: file })
   }
 
   const handleChange = ({ target: { name, value } }) => {
