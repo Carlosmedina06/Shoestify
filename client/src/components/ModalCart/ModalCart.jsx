@@ -22,8 +22,6 @@ function ModelCart() {
   const dark = useColorModeValue('brand.primario', 'brand.secundario')
   const light = useColorModeValue('brand.secundario', 'brand.primario')
   const cart = useProductStore((state) => state.cart)
-  const deleteAllCart = useProductStore((state) => state.deleteAllCart)
-
   const [addOrder] = useMutation(CREATE_PAYMENT_INTENT, {
     context: {
       headers: {
@@ -38,10 +36,8 @@ function ModelCart() {
         products: cart,
       },
     }).then((res) => {
-      console.log(res)
       window.location.href = res.data.createPaymentIntent.url
     })
-    deleteAllCart()
     onClose()
   }
 
