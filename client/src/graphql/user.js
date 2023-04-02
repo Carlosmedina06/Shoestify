@@ -51,3 +51,16 @@ export const DETELE_USER = gql`
     }
   }
 `
+export const PRODUCT_PURCHASE = gql`
+  mutation Mutation($input: ProductIdsInput!) {
+    productBuyToUser(input: $input) {
+      id
+      name
+      email
+      password
+      active
+      isAdmin
+      allyourPurchase
+    }
+  }
+`
