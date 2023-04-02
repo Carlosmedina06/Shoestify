@@ -11,6 +11,12 @@ export const getProducts = async () => {
   return products
 }
 
+export const getProductsByArray = async (_parent, { productIds }) => {
+  const products = await Product.find({ _id: { $in: productIds } })
+
+  return products
+}
+
 export const getProductById = async (_parent, { id }) => {
   const product = await Product.findOne({ _id: id })
 
