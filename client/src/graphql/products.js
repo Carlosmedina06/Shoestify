@@ -17,13 +17,18 @@ export const GET_PRODUCTS = gql`
   }
 `
 export const GET_PRODUCT_BY_IDS = gql`
-  query ProductsByArray($productIds: [ID!]!) {
+  query Query($productIds: [ID!]!) {
     productsByArray(productIds: $productIds) {
       id
       name
-      description
-      image
+      active
+      countInStock
+      price
+      category
       brand
+      image
+      description
+      quantity
     }
   }
 `
