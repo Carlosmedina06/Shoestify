@@ -12,19 +12,25 @@ import {
 } from '@chakra-ui/react'
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import useAuthStore from '../../store/authStore'
 
 const Account = () => {
   const dark = useColorModeValue('brand.primario', 'brand.secundario')
   const light = useColorModeValue('brand.secundario', 'brand.primario')
-
+  const navigate = useNavigate()
   const { checkAuth, logoutToken } = useAuthStore()
   const { user } = useAuthStore((state) => state)
 
   useEffect(() => {
     checkAuth()
   }, [checkAuth])
+
+  const handleLogout = () => {
+    logoutToken()
+    navigate('/')
+  }
 
   const MenuLink = ({ children, to }) => (
     <MenuItem
@@ -67,7 +73,7 @@ const Account = () => {
           rounded={'md'}
           transition={'all 0.2s ease-in-out'}
           w={'full'}
-          onClick={() => logoutToken()}
+          onClick={handleLogout}
         >
           Cerrar Sesion
         </Button>
