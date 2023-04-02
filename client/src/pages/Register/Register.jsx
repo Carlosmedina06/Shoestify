@@ -9,9 +9,8 @@ import {
   Input,
   Stack,
 } from '@chakra-ui/react'
-import { useMutation } from '@apollo/client'
 
-import { CREATE_USER } from '../../graphql/user'
+import useCreateUser from '../../utils/hooks/useCreateUser'
 
 const Register = () => {
   const [user, setUser] = useState({
@@ -21,7 +20,7 @@ const Register = () => {
     confirmPassword: '',
   })
   const [errors, setErrors] = useState({})
-  const [createUser, { loading }] = useMutation(CREATE_USER)
+  const [createUser, { loading }] = useCreateUser()
 
   const handleChange = ({ target }) => {
     const { name, value } = target
