@@ -42,33 +42,41 @@ const Navbar = () => {
     <>
       <Stack bg={dark} fontSize="xl" fontWeight="bold" pt={4} px={2} spacing={7} width="100%">
         <Stack alignItems={'center'} direction={'row'} justifyContent={'space-between'} px={4}>
-          <IconButton
-            _hover={{
-              bg: light,
-              color: dark,
-            }}
-            aria-label={'Open Menu'}
-            bg={dark}
-            color={useColorModeValue('brand.secundario', 'brand.primario')}
-            display={{ md: 'none' }}
-            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-            size={'md'}
-            transition={'all 0.2s ease-in-out'}
-            onClick={isOpen ? onClose : onOpen}
-          />
-          <Text
-            color={light}
-            fontSize={{ base: 'md', md: '2xl' }}
-            fontWeight={'bold'}
-            userSelect={'none'}
-          >
-            Shoestify 👟
-          </Text>
+          {isAuthenticated && (
+            <IconButton
+              _hover={{
+                bg: light,
+                color: dark,
+              }}
+              aria-label={'Open Menu'}
+              bg={dark}
+              color={light}
+              display={{ md: 'none' }}
+              icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+              size={'md'}
+              transition={'all 0.2s ease-in-out'}
+              onClick={isOpen ? onClose : onOpen}
+            />
+          )}
+          <NavLink to={'/'}>
+            <Text
+              color={light}
+              fontSize={{ base: 'md', md: '2xl' }}
+              fontWeight={'bold'}
+              userSelect={'none'}
+            >
+              Shoestify 👟
+            </Text>
+          </NavLink>
           <Stack as={'nav'} direction={'row'} display={{ base: 'none', md: 'flex' }} spacing={4}>
-            <ContentLink to={`/`}>Inicio</ContentLink>
-            <ContentLink to={`/Products/Hombres`}>Hombres</ContentLink>
-            <ContentLink to={`/Products/Mujeres`}>Mujeres</ContentLink>
-            <ContentLink to={`/Products/Niños`}>Niños</ContentLink>
+            {!isAuthenticated ? null : (
+              <>
+                <ContentLink to={`/`}>Inicio</ContentLink>
+                <ContentLink to={`/Products/Hombres`}>Hombres</ContentLink>
+                <ContentLink to={`/Products/Mujeres`}>Mujeres</ContentLink>
+                <ContentLink to={`/Products/Niños`}>Niños</ContentLink>
+              </>
+            )}
           </Stack>
           <Stack alignItems={'center'} direction={'row'} spacing={4}>
             <Cart />
@@ -76,7 +84,8 @@ const Navbar = () => {
           </Stack>
         </Stack>
       </Stack>
-      {isOpen ? (
+
+      {isOpen & isAuthenticated ? (
         <Box bg={dark} display={{ md: 'none' }} pb={4}>
           <Stack align={'center'} as={'nav'} fontWeight="bold" spacing={4}>
             <ContentLink to={`/`}>Inicio</ContentLink>
