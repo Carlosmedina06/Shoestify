@@ -83,5 +83,6 @@ export const typeDefs = gql`
     price: Float
     countInStock: Int
     active: Boolean
+    quantity: Int
   }
 `
