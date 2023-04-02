@@ -12,23 +12,16 @@ import {
   Heading,
   Text,
 } from '@chakra-ui/react'
-import { useMutation } from '@apollo/client'
 
 import useProductStore from '../../store/productStore'
-import { CREATE_PAYMENT_INTENT } from '../../graphql/pago'
+import useCreatePayment from '../../utils/hooks/useCreatePayment'
 
 function ModelCart() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const dark = useColorModeValue('brand.primario', 'brand.secundario')
   const light = useColorModeValue('brand.secundario', 'brand.primario')
   const cart = useProductStore((state) => state.cart)
-  const [addOrder] = useMutation(CREATE_PAYMENT_INTENT, {
-    context: {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem('token')}`,
-      },
-    },
-  })
+  const [addOrder] = useCreatePayment()
 
   const handleAddOrder = () => {
     addOrder({
