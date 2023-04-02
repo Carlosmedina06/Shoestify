@@ -16,6 +16,17 @@ export const GET_PRODUCTS = gql`
     }
   }
 `
+export const GET_PRODUCT_BY_IDS = gql`
+  query ProductsByArray($productIds: [ID!]!) {
+    productsByArray(productIds: $productIds) {
+      id
+      name
+      description
+      image
+      brand
+    }
+  }
+`
 
 //Mutations
 export const CREATE_PRODUCT = gql`
