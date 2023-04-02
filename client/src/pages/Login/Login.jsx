@@ -1,19 +1,18 @@
 import { useState } from 'react'
 import { Button, Container, FormControl, FormLabel, Heading, Input, Stack } from '@chakra-ui/react'
-import { useMutation } from '@apollo/client'
 import { useNavigate } from 'react-router-dom'
 
 import useAuthStore from '../../store/authStore'
-import { LOGIN_USER } from '../../graphql/user'
+import useLoginUser from '../../utils/hooks/useLoginUser'
 
 const Login = () => {
+  const navigate = useNavigate()
+  const { loginToken } = useAuthStore()
+  const [loginUser, { loading }] = useLoginUser()
   const [user, setUser] = useState({
     email: '',
     password: '',
   })
-  const [loginUser, { loading }] = useMutation(LOGIN_USER)
-  const navigate = useNavigate()
-  const { loginToken } = useAuthStore()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
