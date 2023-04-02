@@ -12,6 +12,7 @@ import {
   getProductById,
   getProducts,
   updateProduct,
+  getProductsByArray,
 } from './product.js'
 import { createPaymentIntent } from './pago.js'
 
@@ -21,6 +22,7 @@ export const resolvers = {
     userById: getUserById,
     products: getProducts,
     productById: getProductById,
+    productsByArray: getProductsByArray,
   },
 
   Mutation: {
