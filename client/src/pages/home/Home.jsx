@@ -1,12 +1,52 @@
 import { Center, Image, Stack, Text, useColorModeValue } from '@chakra-ui/react'
 import { NavLink } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useMutation } from '@apollo/client'
 
 import Banner from '../../components/Banner/Banner'
 import Carousel from '../../components/Carousel/Carousel'
+import useProductStore from '../../store/productStore'
+import { PRODUCT_PURCHASE } from '../../graphql/user'
+import useAuthStore from '../../store/authStore'
 
 const Home = () => {
   const dark = useColorModeValue('brand.primario', 'brand.secundario')
   const light = useColorModeValue('brand.secundario', 'brand.primario')
+  const cart = useProductStore((state) => state.cart)
+  const deleteAllCart = useProductStore((state) => state.deleteAllCart)
+  const { isAuthenticated } = useAuthStore((state) => state)
+
+  const url = useLocation()
+  const [productPurchase] = useMutation(PRODUCT_PURCHASE, {
+    context: {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    },
+  })
+
+  useEffect(() => {
+    try {
+      if (url.search.includes('status=approved')) {
+        const productIds = cart.map((item) => item.id)
+
+        if (productIds.length === 0) return
+        productPurchase({
+          variables: {
+            input: {
+              productIds,
+            },
+          },
+        }).then(() => {
+          deleteAllCart()
+        })
+      }
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log({ error: error.response.data })
+    }
+  }, [url.search, cart, productPurchase, deleteAllCart])
 
   return (
     <>
@@ -31,7 +71,7 @@ const Home = () => {
               colección ahora y eleva tu moda.
             </Text>
             <Stack w={'100%'}>
-              <NavLink to={'/products'}>
+              <NavLink to={isAuthenticated ? '/Products' : '/login'}>
                 <Stack
                   _active={{
                     transform: 'scale(0.95)',
