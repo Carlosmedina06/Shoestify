@@ -6,6 +6,7 @@ export const typeDefs = gql`
     productById(id: ID): Product
     users: [User]
     userById(id: ID): User
+    productsByArray(productIds: [ID!]!): [Product]
   }
 
   type Mutation {
