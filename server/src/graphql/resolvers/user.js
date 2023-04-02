@@ -18,7 +18,6 @@ export const getUsers = async (_parent, _args, context) => {
     throw new Error(error.message)
   }
 }
-
 export const getUserById = async (_parent, { id }, context) => {
   try {
     checkAuthorization(context)
@@ -29,7 +28,6 @@ export const getUserById = async (_parent, { id }, context) => {
     throw new Error(error.message)
   }
 }
-
 export const createUser = async (_, { name, email, password }) => {
   try {
     if (!name || !email || !password) throw new Error('Please provide all the required fields')
@@ -61,7 +59,6 @@ export const createUser = async (_, { name, email, password }) => {
     throw new Error(error.message)
   }
 }
-
 export const deleteUser = async (_, { id }, context) => {
   try {
     if (!id) throw new Error('Please provide an id')
@@ -79,7 +76,6 @@ export const deleteUser = async (_, { id }, context) => {
     throw new Error(error.message)
   }
 }
-
 export const loginUser = async (_, { email, password }) => {
   try {
     const user = await User.findOne({ email })
@@ -104,6 +100,35 @@ export const loginUser = async (_, { email, password }) => {
     return {
       id: user._id,
       token,
+    }
+  } catch (error) {
+    throw new Error(error.message)
+  }
+}
+export const productBuyToUser = async (_, { input }, context) => {
+  try {
+    if (!context.token) throw new Error('You are not authorized to do this action')
+
+    const authorization = context.token
+
+    if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
+      const token = authorization.substring(7)
+      const decodedToken = jwt.verify(token, process.env.SECRET)
+
+      if (!input.productIds || !Array.isArray(input.productIds))
+        throw new Error('Please provide an array of product ids')
+
+      const user = await User.findById(decodedToken.id)
+
+      if (!user) throw new Error('User does not exist')
+
+      user.allyourPurchase.push(...input.productIds)
+      await user.save()
+
+      return {
+        id: user._id,
+        token,
+      }
     }
   } catch (error) {
     throw new Error(error.message)
