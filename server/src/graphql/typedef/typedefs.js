@@ -2,16 +2,17 @@ import { gql } from 'graphql-tag'
 
 export const typeDefs = gql`
   type Query {
-    products: [product]
-    productById(id: ID): product
-    users: [user]
-    userById(id: ID): user
+    products: [Product]
+    productById(id: ID): Product
+    users: [User]
+    userById(id: ID): User
   }
 
   type Mutation {
     loginUser(email: String!, password: String!): Auth
     createUser(name: String, email: String, password: String): Auth
-    deleteUser(id: ID): user
+    deleteUser(id: ID): User
+    productBuyToUser(input: ProductIdsInput!): User
     createProduct(
       name: String
       description: String
@@ -21,7 +22,7 @@ export const typeDefs = gql`
       price: Float
       countInStock: Int
       active: Boolean
-    ): product
+    ): Product
     updateProduct(
       id: ID
       name: String
@@ -32,12 +33,16 @@ export const typeDefs = gql`
       price: Float
       countInStock: Int
       active: Boolean
-    ): product
-    deleteProduct(id: ID): product
-    createPaymentIntent(products: [productPagoInput]): paymentIntent
+    ): Product
+    deleteProduct(id: ID): Product
+    createPaymentIntent(products: [ProductPagoInput]): PaymentIntent
   }
 
-  input productPagoInput {
+  input ProductIdsInput {
+    productIds: [ID!]!
+  }
+
+  input ProductPagoInput {
     id: ID
     name: String
     description: String
@@ -48,7 +53,7 @@ export const typeDefs = gql`
     brand: String
   }
 
-  type user {
+  type User {
     id: ID
     name: String
     email: String
@@ -58,7 +63,7 @@ export const typeDefs = gql`
     allyourPurchase: [String]
   }
 
-  type paymentIntent {
+  type PaymentIntent {
     url: String
   }
 
@@ -67,7 +72,7 @@ export const typeDefs = gql`
     id: ID
   }
 
-  type product {
+  type Product {
     id: ID
     name: String
     description: String
