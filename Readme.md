@@ -9,7 +9,8 @@ Para instalar el proyecto, siga los siguientes pasos:
 1. Clonar el repositorio en su máquina local.
 2. Abra una terminal en el directorio del proyecto.
 3. Ejecute `npm install` para instalar todas las dependencias del proyecto.
-4. Ejecute `npm start` para iniciar el servidor y ver la aplicación en el navegador.
+4. Ejecute `npm run dev` para iniciar el cliente y ver la aplicacion en el navegador.
+5. Ejecute `npm start` para iniciar el servidor.
 
 ## Tecnologías utilizadas
 
