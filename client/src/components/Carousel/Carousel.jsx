@@ -5,7 +5,7 @@ import 'swiper/css'
 import useProductStore from '../../store/productStore'
 
 const Carousel = () => {
-  const productos = useProductStore((state) => state.products)
+  const productos = useProductStore((state) => state.allProducts)
   const images = productos.map((product) => product.image)
   const shuffledImages = images.sort(() => Math.random() - 0.5)
 
