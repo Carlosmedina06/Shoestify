@@ -30,6 +30,8 @@ El proyecto actualmente cuenta con las siguientes funcionalidades:
 - Agregar productos al carrito de compras.
 - Actualización y eliminación de productos del carrito de compras.
 - Persistencia de datos de usuarios y productos en MongoDB.
+- Paserela de Pago con MercadoPago
+
 ## Demo 
 ![Captura de pantalla 2023-04-03 a la(s) 08 25 37 p  m](https://user-images.githubusercontent.com/101008770/229648176-3167c3d2-1eb1-4765-9057-a463827f0455.png)
 ![Captura de pantalla 2023-04-03 a la(s) 08 26 00 p  m](https://user-images.githubusercontent.com/101008770/229648181-e950bc86-a504-483e-a6ce-9d6604c4f0f2.png)
